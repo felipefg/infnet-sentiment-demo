@@ -1,0 +1,33 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+raw_tweets:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/Tweets.csv
+
+selected_tweets:
+  type: pandas.ParquetDataSet
+  filepath: data/03_primary/selected_tweets.csv
+
+selected_tweets_metrics:
+  type: kedro_mlflow.io.metrics.MlflowMetricsDataSet
+
+data_train:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/train.parquet
+
+data_test:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/test.parquet
+
+nb_model:
+    type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+    data_set:
+        type: kedro_mlflow.io.models.MlflowModelSaverDataSet
+        flavor: mlflow.sklearn
+        filepath: data/06_models/nb_model
+
+model_metrics:
+  type: kedro_mlflow.io.metrics.MlflowMetricsDataSet

@@ -1,0 +1,12 @@
+# Selecting data
+min_confidence: 0.8
+
+# Train-Test split
+test_size: 0.2
+test_split_random_state: 123
+
+# Naive Bayes Pipeline Params
+n_folds: 10
+param_grid:
+  clf__alpha: [0.1, 1, 5]
+  clf__fit_prior: [True, False]
